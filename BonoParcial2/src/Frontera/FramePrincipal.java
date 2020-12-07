@@ -142,8 +142,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 String fecha=date.getDay()+"/"+date.getMonth()+"/"+date.getYear()+"    "+date.getHours()+":"+date.getMinutes();
                 object[i][0]=objects.get(i).getSensor().getId();
                 object[i][1]=objects.get(i).getValor();
-                //object[i][2]=h.get(i).getFecha_y_hora().toString();
-                object[i][2]=fecha;
+                object[i][2]=objects.get(i).getFecha_y_hora().toString();
+                
+                //object[i][2]=fecha;
             }
             
         }else{

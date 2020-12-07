@@ -220,7 +220,7 @@ public class Enviar extends javax.swing.JPanel {
             //probando todo junto
             Historico h=new Historico();
             h.setValor(RandomLim(id_sensor));
-            h.setProcesamiento(Historico.NORMAL);
+            //h.setProcesamiento(Historico.NORMAL);
             h.setFecha_y_hora(new Date());
             h.setSensor(sensor);
             

@@ -93,7 +93,7 @@ public class DatoDAO {
         ArrayList<Historico> listaHistorico=new ArrayList<>();
         Historico historico=null;
         
-        Query q=em.createQuery("Select h from Historico h");
+        Query q=em.createQuery("Select h from Historico h ORDER by h.fecha_y_hora");
         try {
             List result=q.getResultList();
             //System.out.println("Aqui: "+result.size()+"  :  "++"  :  "+);
@@ -116,7 +116,7 @@ public class DatoDAO {
         ArrayList<Historico> listaHistorico=new ArrayList<>();
         Historico historico=null;
         
-        Query q=em.createQuery("Select h from Historico h where h.sensor = :sens").setParameter("sens", sensor);
+        Query q=em.createQuery("Select h from Historico h where h.sensor = :sens Order by h.fecha_y_hora ").setParameter("sens", sensor);
         try {
             List result=q.getResultList();
             //System.out.println("Aqui: "+result.size()+"  :  "++"  :  "+);

@@ -115,8 +115,8 @@ public class Mostrar extends javax.swing.JPanel {
                 String fecha=date.getDay()+"/"+date.getMonth()+"/"+date.getYear()+"    "+date.getHours()+":"+date.getMinutes();
                 object[i][0]=h.get(i).getSensor().getId();
                 object[i][1]=h.get(i).getValor();
-                //object[i][2]=h.get(i).getFecha_y_hora().toString();
-                object[i][2]=fecha;
+                object[i][2]=h.get(i).getFecha_y_hora().toString();
+                //object[i][2]=fecha;
             }
             
             }else{
