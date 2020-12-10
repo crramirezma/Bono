@@ -21,6 +21,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     private Enviar enviar=new Enviar();
     private Mostrar mostrar=new Mostrar();
+    private Procesamiento procesar=new Procesamiento();
     
     /**
      * Creates new form FramePrincipal
@@ -44,7 +45,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         enviarBt = new javax.swing.JButton();
         mostrarBt = new javax.swing.JButton();
-        parcialBt = new javax.swing.JButton();
+        procesarBt = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,11 +75,16 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(mostrarBt);
 
-        parcialBt.setText("Para el parcial¿?");
-        parcialBt.setFocusable(false);
-        parcialBt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        parcialBt.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(parcialBt);
+        procesarBt.setText("Procesar datos");
+        procesarBt.setFocusable(false);
+        procesarBt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        procesarBt.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        procesarBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procesarBtActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(procesarBt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,6 +163,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         mostrar.getTabla().setModel(new javax.swing.table.DefaultTableModel(object,Titulos));
         panelPrincipal.setVisible(true);
     }//GEN-LAST:event_mostrarBtActionPerformed
+
+    private void procesarBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarBtActionPerformed
+        panelPrincipal.setVisible(false);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(procesar);
+        panelPrincipal.setVisible(true);
+    }//GEN-LAST:event_procesarBtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +255,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton mostrarBt;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JButton parcialBt;
+    private javax.swing.JButton procesarBt;
     // End of variables declaration//GEN-END:variables
 }

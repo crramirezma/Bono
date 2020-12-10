@@ -84,13 +84,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrarBtActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="parcialBt">
+            <Component class="javax.swing.JButton" name="procesarBt">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Para el parcial&#xbf;?"/>
+                <Property name="text" type="java.lang.String" value="Procesar datos"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="procesarBtActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

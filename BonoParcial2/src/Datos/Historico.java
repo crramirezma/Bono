@@ -19,7 +19,8 @@ import java.util.Date;
 
 import Entidad.Sensor;
 import javax.persistence.TemporalType;
-
+//insert into ADMIN_APP.HISTORICO(FECHA_Y_HORA,PROCESAMIENTO,VALOR,SENSOR_ID) values ('2020-12-07 23:55:13.348','Error',4500,4)
+//insert into ADMIN_APP.HISTORICO(FECHA_Y_HORA,PROCESAMIENTO,VALOR,SENSOR_ID) values ('2020-12-09 19:47:50.023','Error',10000001,4)
 /**
  *
  * @author crist

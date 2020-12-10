@@ -9,6 +9,8 @@ import Datos.Historico;
 import Entidad.Sensor;
 import Entidad.TipoSensor;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -177,5 +179,85 @@ public class DatoDAO {
         }
     }
     
-    
+    public ArrayList<Historico> procesarTipo(TipoSensor tipo){
+        ArrayList<Historico> h=new ArrayList<>();
+        try{
+            if(tipo.isPromedio()){
+                h=procesarTipoPromedio(tipo);
+            }else{
+                h.add(procesarTipoNoPromedio(tipo));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //em.close();
+            return h;
+        }
+            
+        
+        //return h;
+        
+        
+        //return historico;
+    }
+    public Historico procesarTipoNoPromedio(TipoSensor tipo){
+        EntityManager em=entity_mf.createEntityManager();
+        Historico historico=null;
+            Query q=em.createQuery("Select s1 from Historico s1 join Sensor s2 on s1.sensor = s2 where s2.tipo = :tipo ORDER by s1.fecha_y_hora")
+                .setParameter("tipo", tipo);
+        try {
+            historico=(Historico)q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            historico=(Historico)q.getResultList().get(q.getResultList().size()-1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            em.close();
+            return historico;
+        }
+    }
+    public ArrayList<Historico> procesarTipoPromedio(TipoSensor tipo){
+        EntityManager em=entity_mf.createEntityManager();
+        Date fin=new Date();
+        Date inicio=sumarRestarHorasFecha(fin, -(tipo.getNumeroHoras()));
+        
+        Historico historico=null;
+        ArrayList<Historico> h=new ArrayList<>();
+            Query q=em.createQuery("Select s1 from Historico s1 join Sensor s2 on s1.sensor = s2 where (s2.tipo = :tipo) And s1.fecha_y_hora > :inicio And s1.fecha_y_hora< :fin ORDER by s1.fecha_y_hora")
+                .setParameter("tipo", tipo)
+                .setParameter("inicio",inicio)
+                .setParameter("fin", fin);
+        System.out.println(fin+"\n"+inicio  );  
+        try {
+            historico=(Historico)q.getSingleResult();
+            h.add(historico);
+        } catch (NonUniqueResultException e) {
+            for(int i=q.getResultList().size()-1;i>=0;i--){
+                historico=(Historico)q.getResultList().get(i);
+                h.add(historico);
+            }
+            System.out.println(h.size()+"");
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            em.close();
+            return h;
+        }
+    }
+    // Suma o resta las horas recibidos a la fecha  
+	
+    public Date sumarRestarHorasFecha(Date fecha, int horas){
+	
+ 
+	
+      Calendar calendar = Calendar.getInstance();
+	
+      calendar.setTime(fecha); // Configuramos la fecha que se recibe
+	
+      calendar.add(Calendar.HOUR, horas);  // numero de horas a añadir, o restar en caso de horas<0
+	
+      return calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+	
+    }
 }
